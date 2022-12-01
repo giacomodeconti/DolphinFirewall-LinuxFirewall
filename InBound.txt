@@ -1,8 +1,7 @@
 Web 1 1 TCP DROP 
 ABC 4.4.4.4 8080 UDP ALLOW 
-Apache_web 4.4.4.4 8080 UDP ALLOW 
-Apache_Server 4.4.4.4 8080 UDP ALLOW 
-Apache_Server2 4.4.4.4 8080 UDP ALLOW 
-Apache_Server3 4.4.4.4 8080 UDP ALLOW 
-Apache_Caramba 4.4.4.4 8080 UDP ALLOW 
+ApacheServer 4.4.4.4 8080 UDP ALLOW 
+ApacheServer2 4.4.4.4 8080 UDP ALLOW 
+ApacheServer3 4.4.4.4 8080 UDP ALLOW 
+ApacheCaramba 4.4.4.4 8080 UDP ALLOW 
 D 4.4.4.4 8080 UDP ALLOW 
