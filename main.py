@@ -30,14 +30,14 @@ while 1==1:
 
     console.print(table)
 
-    respond=int(input())
-    if respond == 1:
+    respond=input()
+    if respond == '1':
         CreatePolicy()
-    elif respond == 2:
+    elif respond == '2':
         delPolicy()
-    elif respond == 3:
+    elif respond == '3':
         ShowRules()
-    elif respond == 4:
+    elif respond == '4':
         console.print('\nEXIT\n', style="red")
         break
     else:
