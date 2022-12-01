@@ -1,1 +1,2 @@
-
+SMB 8.8.8.8 21 TCP DROP 
+Apache_Web 4.4.4.4 8080 TCP ALLOW 

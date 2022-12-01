@@ -8,7 +8,7 @@ def CreatePolicy():
     port=input("Port:\n")
     protocol=input("Protocol:\n")
     traffic=input("ALLOW/DROP:\n")
-
+    
     console = Console()
     table = Table(title="Dolphin Firewall")
 
@@ -26,5 +26,6 @@ def CreatePolicy():
     elif rule=="O":
         os.system(f"echo {PolicyName} {IPs} {port} {protocol} {traffic} >> OutBound.txt")
         #add iptables command here
+        os.system(f"sudo iptables -I OUTPUT -s {IPs} -j {traffic}")
 
     console.print(table)

@@ -9,7 +9,7 @@ while 1==1:
 
     console.print("""
                 ,-._
-            _.-'  '--.
+              _.-'  '--.
             .'      _  -`\_
             / .----.`_.'----'
             ;/     `
@@ -24,10 +24,9 @@ while 1==1:
     table.add_column("Title", style="magenta")
 
     table.add_row("1", "Create Policy")
-    table.add_row("2", "Edit Policy")
-    table.add_row("3", "Delete Policy")
-    table.add_row("4", "Show Rules")
-    table.add_row("5", "EXIT", style="red")
+    table.add_row("2", "Delete Policy")
+    table.add_row("3", "Show Rules")
+    table.add_row("4", "EXIT", style="red")
 
     console.print(table)
 
@@ -35,12 +34,10 @@ while 1==1:
     if respond == 1:
         CreatePolicy()
     elif respond == 2:
-        seekRule()
-    elif respond == 3:
         delPolicy()
-    elif respond == 4:
+    elif respond == 3:
         ShowRules()
-    elif respond == 5:
+    elif respond == 4:
         console.print('\nEXIT\n', style="red")
         break
     else:
