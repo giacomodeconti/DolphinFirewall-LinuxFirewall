@@ -14,8 +14,10 @@ def ShowRules():
         lines = f.readlines()
         for line in lines:
             rule = line.split(" ")
-            table.add_row(rule[0],rule[1],rule[2],rule[3],rule[4])
-            
+            try:
+                table.add_row(rule[0],rule[1],rule[2],rule[3],rule[4])
+            except:
+                print("WARNING: You have entered wrong input!")
     console.print(table)
 
     console = Console()
@@ -29,10 +31,13 @@ def ShowRules():
 
     with open('OutBound.txt', 'r', encoding='utf-8') as f:
         lines = f.readlines()
+        
         for line in lines:
             rule = line.split(" ")
-            table.add_row(rule[0],rule[1],rule[2],rule[3],rule[4])
-            
+            try:
+                table.add_row(rule[0],rule[1],rule[2],rule[3],rule[4])
+            except:
+                print("WARNING: You have entered wrong input!")
     console.print(table)
     input('Press ENTER to continue\n')
     
