@@ -26,29 +26,36 @@ def CreatePolicy():
     table.add_row(PolicyName, IPs, port, protocol, traffic)
     if rule=="I":
         os.system(f"echo {PolicyName} {IPs} {port} {protocol} {traffic} >> InBound.txt")
-        #add iptables command her
-        if IPs=='all':
+        
+        if IPs=='all' and port!='all' and protocol!="all":
             #add port and protocol command 
             os.system(f"sudo iptables -I INPUT -p {protocol} --destination-port {port} -j {traffic}")
-        elif port=='all':  
+
+        elif IPs!='all' and port=='all' and protocol!="all":  
             #add IP and protocol command
             os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} -j {traffic}")
-        elif protocol=='all':
+
+        elif IPs!='all' and port!='all' and protocol=="all":
             #add IP and port command
             os.system(f"sudo iptables -I INPUT -s {IPs} --destination-port {port} -j {traffic}")
-        elif IPs and port=='all':
+
+        elif IPs=="all" and port=='all' and protocol!='all':
             #add protocol command
             os.system(f"sudo iptables -I INPUT -p {protocol} -j {traffic}")
-        elif protocol and port=='all':
+
+        elif IPs!='all' and port=='all' and protocol=='all':
             #add IP command
             os.system(f"sudo iptables -I INPUT -s {IPs} -j {traffic}")
-        elif IPs and protocol=='all':
+
+        elif IPs=='all' and port!='all' and protocol=='all':
             #add port command
             os.system(f"sudo iptables -I INPUT --destination-port {port} -j {traffic}")
-        elif IPs and port and protocol=='all':
+
+        elif IPs=='all' and port=='all' and protocol=='all':
             #all parameters
             os.system(f"sudo iptables -I INPUT -j {traffic}")
-        elif IPs and port and protocol!='all':
+
+        elif IPs!='all' and port!='all' and protocol!='all':
             #one by one
             os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} --destination-port {port} -j {traffic}")
             
