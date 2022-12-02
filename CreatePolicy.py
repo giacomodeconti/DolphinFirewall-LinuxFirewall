@@ -62,8 +62,38 @@ def CreatePolicy():
     # OUTPUT RULE
     elif rule=="O":
         os.system(f"echo {PolicyName} {IPs} {port} {protocol} {traffic} >> OutBound.txt")
-    
-        os.system(f"sudo iptables -I OUTPUT -s {IPs} -j {traffic}")
+
+        if IPs=='all' and port!='all' and protocol!="all":
+            #add port and protocol command 
+            os.system(f"sudo iptables -I INPUT -p {protocol} --destination-port {port} -j {traffic}")
+
+        elif IPs!='all' and port=='all' and protocol!="all":  
+            #add IP and protocol command
+            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} -j {traffic}")
+
+        elif IPs!='all' and port!='all' and protocol=="all":
+            #add IP and port command
+            os.system(f"sudo iptables -I INPUT -s {IPs} --destination-port {port} -j {traffic}")
+
+        elif IPs=="all" and port=='all' and protocol!='all':
+            #add protocol command
+            os.system(f"sudo iptables -I INPUT -p {protocol} -j {traffic}")
+
+        elif IPs!='all' and port=='all' and protocol=='all':
+            #add IP command
+            os.system(f"sudo iptables -I INPUT -s {IPs} -j {traffic}")
+
+        elif IPs=='all' and port!='all' and protocol=='all':
+            #add port command
+            os.system(f"sudo iptables -I INPUT --destination-port {port} -j {traffic}")
+
+        elif IPs=='all' and port=='all' and protocol=='all':
+            #all parameters
+            os.system(f"sudo iptables -I INPUT -j {traffic}")
+
+        elif IPs!='all' and port!='all' and protocol!='all':
+            #one by one
+            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} --destination-port {port} -j {traffic}")
 
     console.print(table)
 
