@@ -38,10 +38,10 @@ def CreatePolicy():
 
     # TO DO:
     # SI PUò MIGLIORARE LA SCRITTURA DEL FILE PERCHé NON è NECESSARIO ECHO
-    # INVECE CHE ECHO UTILIZZARE ---> 
+    # INVECE CHE ECHO UTILIZZARE --->
     # SI RIDURREBBE IN QUESTO MODO AD UNA SOLA SCRITTURA DI FILE IMPOSTANDO IL FILE COME VARIABILE, DIMEZZANDO COSì IL CODICE SEGUENTE
 
-    
+
     if rule == "I":
     #icmp requests
         if protocol=='icmp':
@@ -52,9 +52,9 @@ def CreatePolicy():
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
         else:
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
-    
+
         os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> InBound.txt")
-    
+
     elif rule == "O":
         if protocol == 'icmp':
             os.system(f"sudo iptables -I OUTPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-reply")
@@ -65,6 +65,6 @@ def CreatePolicy():
             os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
 
         os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> OutBound.txt")
-    
+
     console.print(table)
 
