@@ -4,8 +4,6 @@ def CreatePolicy():
     import os
 
     console = Console()
-    #print('Setting up Firewall...\nGice sudo passwd if necessary')
-    #os.system("sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -F")
 
     rule=input("InBound or OutBound (I/O):\n")
 
@@ -38,25 +36,16 @@ def CreatePolicy():
     if port == 'all':
         port = "1:65535"
 
+    # TO DO:
     # SI PUò MIGLIORARE LA SCRITTURA DEL FILE PERCHé NON è NECESSARIO ECHO
     # INVECE CHE ECHO UTILIZZARE ---> 
     # SI RIDURREBBE IN QUESTO MODO AD UNA SOLA SCRITTURA DI FILE IMPOSTANDO IL FILE COME VARIABILE, DIMEZZANDO COSì IL CODICE SEGUENTE
-    if rule == "I":
-        os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> InBound.txt")
 
+    
+    if rule == "I":
     #icmp requests
         if protocol=='icmp':
             os.system(f"sudo iptables -I INPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-request")
-
-            #DA ELIMINARE
-            """
-            icmp=input('\n1) Block InBound icmp requests\n2) Block OutBound icmp requests\n')
-            if icmp == '1':
-                os.system(f"sudo iptables -I INPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-request")
-                #os.system(f"sudo iptables -I INPUT -j DROP -p icmp --icmp-type echo-request")
-            if icmp == '2':
-                os.system(f"sudo iptables -I OUTPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-reply")
-            """
 
         elif protocol == 'all':
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
@@ -64,38 +53,18 @@ def CreatePolicy():
         else:
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
     
-    #SI PUò MIGLIORARE LA SCRITTURA DEL FILE PERCHé NON è NECESSARIO ECHO
+        os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> InBound.txt")
+    
     elif rule == "O":
-        os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> OutBound.txt")
-
-    # IL COMANDO RIMANE COSTANTE
         if protocol == 'icmp':
             os.system(f"sudo iptables -I OUTPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-reply")
-            
-            #DA ELIMINARE
-            """
-            icmp=input('\n1) Block InBound icmp requests\n2) Block OutBound icmp requests\n')
-            if icmp == '1':
-                os.system(f"sudo iptables -I INPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-request")
-                #os.system(f"sudo iptables -I INPUT -j DROP -p icmp --icmp-type echo-request")
-            if icmp == '2':
-                os.system(f"sudo iptables -I OUTPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-reply")
-            """
-
         elif protocol == 'all':
-            os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
+            os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
+            os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
         else:
-            os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
+            os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
 
-        #DA ELIMINARE
-        """
-        if protocol != 'all':
-            os.system(f"sudo iptables -I OUTPUT -d {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
-        elif protocol == 'all':
-            os.system(f"sudo iptables -I OUTPUT -d {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
-            os.system(f"sudo iptables -I OUTPUT -d {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
-        """
-
+        os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> OutBound.txt")
+    
     console.print(table)
 

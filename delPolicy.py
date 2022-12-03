@@ -27,17 +27,36 @@ def delPolicy():
          with open("temp.txt", "w") as output:
             # iterate all lines from file
             for line in inputd:
-                  rule = line.split(" ")
-                  # if substring contain in a line then don't write it
-                  if occurrencies[del_rule-1] != rule[0]:
-                     output.write(line)
+               rule = line.split(" ")
+               if occurrencies[del_rule-1] != rule[0]:
+                  output.write(line)
 
       rule_properties = seekRule(occurrencies[del_rule-1], file_chosen)
-      
+
+      '''
       if respond == "I":
          os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -j {rule_properties[4]}")
       elif respond == "O":
-         os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -j {rule_properties[4]}")
+         os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -j {rule_properties[4]}")'''
+
+      if respond == "I":
+    #icmp requests
+         if rule_properties[4]=='icmp':
+               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} -j {rule_properties[5]} --icmp-type echo-request")
+         elif rule_properties[4] == 'all':
+               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p tcp --dport {rule_properties[3]} -j {rule_properties[5]}")
+               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p udp --dport {rule_properties[3]} -j {rule_properties[5]}")
+         else:
+               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} --dport {rule_properties[3]} -j {rule_properties[5]}")
+
+      elif respond == "O":
+         if rule_properties[4] == 'icmp':
+               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} -j {rule_properties[5]} --icmp-type echo-reply")
+         elif rule_properties[4] == 'all':
+               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p tcp --dport {rule_properties[3]} -j {rule_properties[5]}")
+               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p udp --dport {rule_properties[3]} -j {rule_properties[5]}")
+         else:
+               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} --dport {rule_properties[3]} -j {rule_properties[5]}")
       
       print('POLICY Deleted')
 
