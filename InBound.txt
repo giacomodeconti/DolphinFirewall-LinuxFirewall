@@ -7,3 +7,4 @@ ApacheCaramba 4.4.4.4 8080 UDP ALLOW
 D 4.4.4.4 8080 UDP ALLOW ASD  22   
 Any all all all DROP 
 Apachee all 80 all DROP 
+test 0/0 0/0 1:65535 icmp DROP 
