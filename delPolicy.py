@@ -31,32 +31,32 @@ def delPolicy():
                if occurrencies[del_rule-1] != rule[0]:
                   output.write(line)
 
-      rule_properties = seekRule(occurrencies[del_rule-1], file_chosen)
+      rule_p = seekRule(occurrencies[del_rule-1], file_chosen)
 
       '''
       if respond == "I":
-         os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -j {rule_properties[4]}")
+         os.system(f"sudo iptables -D INPUT -s {rule_p[1]} -j {rule_p[4]}")
       elif respond == "O":
-         os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -j {rule_properties[4]}")'''
+         os.system(f"sudo iptables -D OUTPUT -s {rule_p[1]} -j {rule_p[4]}")'''
 
       if respond == "I":
     #icmp requests
-         if rule_properties[4]=='icmp':
-               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} -j {rule_properties[5]} --icmp-type echo-request")
-         elif rule_properties[4] == 'all':
-               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p tcp --dport {rule_properties[3]} -j {rule_properties[5]}")
-               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p udp --dport {rule_properties[3]} -j {rule_properties[5]}")
+         if rule_p[4]=='icmp':
+               os.system(f"sudo iptables -D INPUT -s {rule_p[1]} -d {rule_p[2]} -p {rule_p[4]} -j {rule_p[5]} --icmp-type echo-request")
+         elif rule_p[4] == 'all':
+               os.system(f"sudo iptables -D INPUT -s {rule_p[1]} -d {rule_p[2]} -p tcp --dport {rule_p[3]} -j {rule_p[5]}")
+               os.system(f"sudo iptables -D INPUT -s {rule_p[1]} -d {rule_p[2]} -p udp --dport {rule_p[3]} -j {rule_p[5]}")
          else:
-               os.system(f"sudo iptables -D INPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} --dport {rule_properties[3]} -j {rule_properties[5]}")
+               os.system(f"sudo iptables -D INPUT -s {rule_p[1]} -d {rule_p[2]} -p {rule_p[4]} --dport {rule_p[3]} -j {rule_p[5]}")
 
       elif respond == "O":
-         if rule_properties[4] == 'icmp':
-               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} -j {rule_properties[5]} --icmp-type echo-reply")
-         elif rule_properties[4] == 'all':
-               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p tcp --dport {rule_properties[3]} -j {rule_properties[5]}")
-               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p udp --dport {rule_properties[3]} -j {rule_properties[5]}")
+         if rule_p[4] == 'icmp':
+               os.system(f"sudo iptables -D OUTPUT -s {rule_p[1]} -d {rule_p[2]} -p {rule_p[4]} -j {rule_p[5]} --icmp-type echo-reply")
+         elif rule_p[4] == 'all':
+               os.system(f"sudo iptables -D OUTPUT -s {rule_p[1]} -d {rule_p[2]} -p tcp --dport {rule_p[3]} -j {rule_p[5]}")
+               os.system(f"sudo iptables -D OUTPUT -s {rule_p[1]} -d {rule_p[2]} -p udp --dport {rule_p[3]} -j {rule_p[5]}")
          else:
-               os.system(f"sudo iptables -D OUTPUT -s {rule_properties[1]} -d {rule_properties[2]} -p {rule_properties[4]} --dport {rule_properties[3]} -j {rule_properties[5]}")
+               os.system(f"sudo iptables -D OUTPUT -s {rule_p[1]} -d {rule_p[2]} -p {rule_p[4]} --dport {rule_p[3]} -j {rule_p[5]}")
       
       print('POLICY Deleted')
 
