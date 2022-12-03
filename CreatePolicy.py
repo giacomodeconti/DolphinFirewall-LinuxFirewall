@@ -9,7 +9,7 @@ def CreatePolicy():
 
     rule=input("InBound or OutBound (I/O):\n")
 
-    console.print("For IP and Port input to select all, type --> all", style="red on white")
+    console.print("For IP, Port and Protocl input to select all, type --> all", style="red on white")
 
     PolicyName = input("Policy name:\n")
     IPs = input("IP source or all:\n")
