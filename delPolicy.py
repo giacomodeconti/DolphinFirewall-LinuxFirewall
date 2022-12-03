@@ -1,4 +1,5 @@
 def delPolicy():
+      import subprocess
       import os
       from nameCheck import nameCheck
       from seekRule import seekRule
@@ -37,7 +38,7 @@ def delPolicy():
       del_rule_props = seekRule(to_be_del, chosen_file)
 
       #Defining all rule properties from del_rule_props (will be used in )
-      r_prop = {
+      r_p = {
         "policyName": del_rule_props[0],
         "IPs": del_rule_props[1],
         "IPd": del_rule_props[2],
@@ -55,10 +56,12 @@ def delPolicy():
                cline_rule_name = rule[0]
                if cline_rule_name == to_be_del:
                   #If the rule name of the current line (cline_rule_name) is the same of the the rule that has to be deleted (to_be_del),
-                  if r_prop['protocol'] == "icmp":
-                    os.system(f"sudo iptables -D {chain} -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} -j {r_prop['traffic']} --icmp-type echo-{icmp_io}")
+                  if r_p['protocol'] == "icmp":
+                    print(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --icmp-type echo-{icmp_io} -j {r_p['traffic']}")
+                    o=subprocess.run(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --icmp-type echo-{icmp_io} -j {r_p['traffic']}", shell=True)
+                    o.stdout
                   else:
-                    os.system(f"sudo iptables -D {chain} -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} --dport {r_prop['port']} -j {r_prop['traffic']}")
+                    os.system(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --dport {r_p['port']} -j {r_p['traffic']}")
 
                if cline_rule_name != to_be_del:
                   #If the rule name of the current line is different from the rule name of the rule that has to be deleted, it writes it on the temporary file that will then be swapped with the current file
@@ -68,27 +71,3 @@ def delPolicy():
       os.replace('temp.txt', chosen_file)
 
       print('POLICY Deleted')
-
-
-"""
-
-      if respond == "I":
-    #icmp requests
-         if r_prop['protocol']=='icmp':
-               os.system(f"sudo iptables -D INPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} -j {r_prop['traffic']} --icmp-type echo-request")
-         elif r_prop['protocol'] == 'all':
-               os.system(f"sudo iptables -D INPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p tcp --dport {r_prop['port']} -j {r_prop['traffic']}")
-               os.system(f"sudo iptables -D INPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p udp --dport {r_prop['port']} -j {r_prop['traffic']}")
-         else:
-               os.system(f"sudo iptables -D INPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} --dport {r_prop['port']} -j {r_prop['traffic']}")
-
-      elif respond == "O":
-         if r_prop['protocol'] == 'icmp':
-               os.system(f"sudo iptables -D OUTPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} -j {r_prop['traffic']} --icmp-type echo-reply")
-         elif r_prop['protocol'] == 'all':
-               os.system(f"sudo iptables -D OUTPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p tcp --dport {r_prop['port']} -j {r_prop['traffic']}")
-               os.system(f"sudo iptables -D OUTPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p udp --dport {r_prop['port']} -j {r_prop['traffic']}")
-         else:
-               os.system(f"sudo iptables -D OUTPUT -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} --dport {r_prop['port']} -j {r_prop['traffic']}")
-
-"""
