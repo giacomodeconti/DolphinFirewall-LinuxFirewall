@@ -17,7 +17,7 @@ def CreatePolicy():
     port = input("Port or all:\n")
     protocol = input("Protocol:\n")
     traffic = input("ACCEPT/DROP:\n")
-    
+
     table = Table(title="Dolphin Firewall")
 
     table.add_column("Name", justify="right", style="cyan", no_wrap=True)
@@ -40,7 +40,7 @@ def CreatePolicy():
 
     if rule == "I":
         os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> InBound.txt")
-    
+
     #IL COMANDO RIMANE COSTANTE
     #print(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
     if protocol != 'all':
@@ -61,101 +61,4 @@ def CreatePolicy():
 
 
     console.print(table)
-    '''
-    # INPUT ROLES
-    if rule=="I":
-        os.system(f"echo {PolicyName} {IPs} {port} {protocol} {traffic} >> InBound.txt")
-        
-        if IPs=='all' and port!='all' and protocol!='all':
-            #add port and protocol command 
-            print("IPs=='all' and port!='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -p {protocol} --destination-port {port} -j {traffic}")
 
-        elif IPs!='all' and port=='all' and protocol!='all':  
-            #add IP and protocol command
-            print("IPs!='all' and port=='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} -j {traffic}")
-
-        elif IPs!='all' and port!='all' and protocol=='all': 
-            #add IP and port command
-            print("IPs!='all' and port!='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p tcp --destination-port {port} -j {traffic}")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p udp --destination-port {port} -j {traffic}")
-
-        elif IPs=='all' and port=='all' and protocol!='all':
-            #add protocol command
-            print("IPs=='all' and port=='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -p {protocol} -j {traffic}")
-
-        elif IPs!='all' and port=='all' and protocol=='all':
-            #add IP command
-            print("IPs!='all' and port=='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -j {traffic}")
-
-        elif IPs=='all' and port!='all' and protocol=='all':
-            #add port command
-            print("IPs=='all' and port!='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -p tcp --destination-port {port} -j {traffic}")
-            os.system(f"sudo iptables -I INPUT -p udp --destination-port {port} -j {traffic}")
-
-        elif IPs=='all' and port=='all' and protocol=='all':
-            #all parameters
-            print("IPs=='all' and port=='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -j {traffic}")
-
-        elif IPs!='all' and port!='all' and protocol!='all':
-            #one by one
-            print("IPs!='all' and port!='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} --destination-port {port} -j {traffic}")
-            
-    # OUTPUT RULES
-    elif rule=="O":
-        os.system(f"echo {PolicyName} {IPs} {port} {protocol} {traffic} >> OutBound.txt")
-
-        if IPs=='all' and port!='all' and protocol!='all':
-            #add port and protocol command 
-            print("IPs=='all' and port!='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -p {protocol} --destination-port {port} -j {traffic}")
-
-        elif IPs!='all' and port=='all' and protocol!='all':  
-            #add IP and protocol command
-            print("IPs!='all' and port=='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} -j {traffic}")
-
-        elif IPs!='all' and port!='all' and protocol=='all': 
-            #add IP and port command
-            print("IPs!='all' and port!='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p tcp --destination-port {port} -j {traffic}")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p udp --destination-port {port} -j {traffic}")
-
-        elif IPs=='all' and port=='all' and protocol!='all':
-            #add protocol command
-            print("IPs=='all' and port=='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -p {protocol} -j {traffic}")
-
-        elif IPs!='all' and port=='all' and protocol=='all':
-            #add IP command
-            print("IPs!='all' and port=='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -j {traffic}")
-
-        elif IPs=='all' and port!='all' and protocol=='all':
-            #add port command
-            print("IPs=='all' and port!='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -p tcp --destination-port {port} -j {traffic}")
-            os.system(f"sudo iptables -I INPUT -p udp --destination-port {port} -j {traffic}")
-
-        elif IPs=='all' and port=='all' and protocol=='all':
-            #all parameters
-            print("IPs=='all' and port=='all' and protocol=='all'")
-            os.system(f"sudo iptables -I INPUT -j {traffic}")
-
-        elif IPs!='all' and port!='all' and protocol!='all':
-            #one by one
-            print("IPs!='all' and port!='all' and protocol!='all'")
-            os.system(f"sudo iptables -I INPUT -s {IPs} -p {protocol} --destination-port {port} -j {traffic}")
-
-    console.print(table)
-'''
-
-
-    
