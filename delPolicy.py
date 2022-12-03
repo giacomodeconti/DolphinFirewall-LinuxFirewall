@@ -11,10 +11,12 @@ def delPolicy():
       if respond == "I":
          chosen_file = "InBound.txt"
          chain = "INPUT"
+         icmp_io = "request"
 
       elif respond == "O":
          chosen_file = "OutBound.txt"
          chain = "OUTPUT"
+         icmp_io = "reply"
 
       # Looks for occurrencies of the rule name in the file and stores them in a list
       occurrencies = nameCheck(string_input,chosen_file)
@@ -54,7 +56,7 @@ def delPolicy():
                if cline_rule_name == to_be_del:
                   #If the rule name of the current line (cline_rule_name) is the same of the the rule that has to be deleted (to_be_del),
                   if r_prop['protocol'] == "icmp":
-                    os.system(f"sudo iptables -D {chain} -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} -j {r_prop['traffic']} --icmp-type echo-request")
+                    os.system(f"sudo iptables -D {chain} -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} -j {r_prop['traffic']} --icmp-type echo-{icmp_io}")
                   else:
                     os.system(f"sudo iptables -D {chain} -s {r_prop['IPs']} -d {r_prop['IPd']} -p {r_prop['protocol']} --dport {r_prop['port']} -j {r_prop['traffic']}")
 
