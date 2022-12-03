@@ -15,10 +15,8 @@ sudo systemctl enable netfilter-persistent.service
 sudo systemctl enable iptables
 sudo systemctl enable ip6tables
 
-# enable on boot
-sudo chkconfig netfilter-persistent.service on
-sudo chkconfig iptables on
-sudo chkconfig ip6tables on
-
 # config iptables
 sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -F
+
+#install rich library python
+pip install rich
