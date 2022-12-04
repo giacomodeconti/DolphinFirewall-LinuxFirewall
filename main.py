@@ -6,10 +6,10 @@ from CreatePolicy import CreatePolicy
 from seekRule import seekRule
 from show import ShowRules
 from delPolicy import delPolicy
-while 1==1:
-    console = Console()
 
-    console.print("""
+console = Console()
+
+console.print("""
                 ,-._
               _.-'  '--.
             .'      _  -`\_
@@ -20,6 +20,7 @@ while 1==1:
         ._      ._      ._
     _.-._)`\_.-._)`\_.-._)`\_.-._
     """, style="blue")
+while 1==1:
     table = Table(title="Dolphin Firewall")
 
     table.add_column("Key", justify="right", style="cyan", no_wrap=True)

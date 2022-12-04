@@ -19,13 +19,16 @@ def status():
 
         console = Console()
 
+
         table = Table(title="Firewall Status")
         table.add_column("Firewall", justify="right", style="cyan", no_wrap=True)
         table.add_column("Status", style="magenta")
-        
-        table.add_row("Firewall State", ":heavy_check_mark:" )
-        table.add_row("Firewall State", ":cross_mark:" )
-
+        with open("status.txt", "r") as f:
+            line = f.read()
+            if "1" in line:
+                table.add_row("Firewall State", ":heavy_check_mark:" )
+            elif "0" in line:
+                table.add_row("Firewall State", ":cross_mark:")
 
         console.print(table)
 
@@ -37,6 +40,9 @@ def status():
             os.system("sudo systemctl enable ip6tables")
             time.sleep(2)
             console.print('--!! ENABLED !!--', style="green")
+            with open("status.txt", "w") as f:
+                f.write("1")
+
         elif respond == '2':
             print('Working ...')
             os.system("sudo systemctl disable netfilter-persistent.service")
@@ -44,10 +50,14 @@ def status():
             os.system("sudo systemctl disable ip6tables")
             time.sleep(2)
             console.print('--!! DISABLED !!--', style="red")
+            with open("status.txt", "w") as f:
+                f.write("0")
+
         elif respond == '3':
             n = n+1
             print("")
         else:
             console.print('\n--!!WRONG NUMBER!!--\n', style="red on yellow")
             time.sleep(2)
+        
         
