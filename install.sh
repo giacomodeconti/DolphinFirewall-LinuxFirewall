@@ -6,7 +6,7 @@ sudo touch /etc/iptables/rulse.v4 && chmod 777 /etc/iptables/rulse.v4
 sudo touch /etc/iptables/rulse.v6 && chmod 777 /etc/iptables/rulse.v6
 
 # install iptables persitent for saves
-sudo apt install iptables-persistent
+sudo apt install iptables-persistent -y
 
 # enable netfilter persistent
 sudo systemctl enable netfilter-persistent.service
@@ -19,4 +19,13 @@ sudo systemctl enable ip6tables
 sudo iptables -P INPUT ACCEPT && sudo iptables -P FORWARD ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -F
 
 #install rich library python
+sudo apt install python3-pip -y
 pip install rich
+
+#download dolphin firewall repo
+sudo mkdir /etc/dolphinfirewall
+sudo git clone https://github.com/giacomodeconti/DolphinFirewall /etc/dolphinfirewall
+alias dfw="python3 /etc/dolphinfirewall/main.py"
+echo
+echo Installation succesful, type dfw to open firewall
+echo

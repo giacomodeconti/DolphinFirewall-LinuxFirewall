@@ -46,23 +46,31 @@ def CreatePolicy():
     #icmp requests
         if protocol=='icmp':
             os.system(f"sudo iptables -I INPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-request")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
 
         elif protocol == 'all':
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
         else:
             os.system(f"sudo iptables -I INPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
 
         os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> InBound.txt")
 
     elif rule == "O":
         if protocol == 'icmp':
             os.system(f"sudo iptables -I OUTPUT -j {traffic} -s {IPs} -d {IPd} -p {protocol} --icmp-type echo-reply")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
         elif protocol == 'all':
             os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p tcp --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
             os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p udp --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
         else:
             os.system(f"sudo iptables -I OUTPUT -s {IPs} -d {IPd} -p {protocol} --dport {port} -j {traffic}")
+            os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
 
         os.system(f"echo {PolicyName} {IPs} {IPd} {port} {protocol} {traffic} >> OutBound.txt")
 

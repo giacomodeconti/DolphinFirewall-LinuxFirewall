@@ -57,11 +57,12 @@ def delPolicy():
                if cline_rule_name == to_be_del:
                   #If the rule name of the current line (cline_rule_name) is the same of the the rule that has to be deleted (to_be_del),
                   if r_p['protocol'] == "icmp":
-                    print(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --icmp-type echo-{icmp_io} -j {r_p['traffic']}")
                     o=subprocess.run(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --icmp-type echo-{icmp_io} -j {r_p['traffic']}", shell=True)
                     o.stdout
+                    os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
                   else:
                     os.system(f"sudo iptables -D {chain} -s {r_p['IPs']} -d {r_p['IPd']} -p {r_p['protocol']} --dport {r_p['port']} -j {r_p['traffic']}")
+                    os.system("sudo /sbin/iptables-save >> /etc/iptables/rules.v4")
 
                if cline_rule_name != to_be_del:
                   #If the rule name of the current line is different from the rule name of the rule that has to be deleted, it writes it on the temporary file that will then be swapped with the current file
