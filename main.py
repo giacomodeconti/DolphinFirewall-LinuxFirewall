@@ -1,5 +1,7 @@
 from rich.console import Console
 from rich.table import Table
+import time
+from status import status
 from CreatePolicy import CreatePolicy
 from seekRule import seekRule
 from show import ShowRules
@@ -26,7 +28,8 @@ while 1==1:
     table.add_row("1", "Create Policy")
     table.add_row("2", "Delete Policy")
     table.add_row("3", "Show Rules")
-    table.add_row("4", "EXIT", style="red")
+    table.add_row("4", "Show Status")
+    table.add_row("5", "EXIT", style="red")
 
     console.print(table)
 
@@ -38,8 +41,12 @@ while 1==1:
     elif respond == '3':
         ShowRules()
     elif respond == '4':
-        console.print('\nEXIT\n', style="red")
+        status()
+    elif respond == '5':
+        console.print('\n--!! EXIT !!--\n', style="red on yellow")
+        time.sleep(1)
         break
     else:
-        print('wrong number')
+         console.print('\n--!!WRONG NUMBER!!--\n', style="red on yellow")
+         time.sleep(2)
 
