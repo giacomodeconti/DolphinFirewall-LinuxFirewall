@@ -23,7 +23,7 @@ def status():
         table = Table(title="Firewall Status")
         table.add_column("Firewall", justify="right", style="cyan", no_wrap=True)
         table.add_column("Status", style="magenta")
-        with open("status.txt", "r") as f:
+        with open("status.config", "r") as f:
             line = f.read()
             if "1" in line:
                 table.add_row("Firewall State", ":heavy_check_mark:" )
