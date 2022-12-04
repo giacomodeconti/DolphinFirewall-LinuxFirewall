@@ -26,9 +26,9 @@ def status():
         with open("status.config", "r") as f:
             line = f.read()
             if "1" in line:
-                table.add_row("Firewall State", ":heavy_check_mark:" )
+                table.add_row("Firewall State", "ON" )
             elif "0" in line:
-                table.add_row("Firewall State", ":cross_mark:")
+                table.add_row("Firewall State", "OFF")
 
         console.print(table)
 
