@@ -19,6 +19,11 @@ console.print("""
 
         ._      ._      ._
     _.-._)`\_.-._)`\_.-._)`\_.-._
+    
+    Created by 
+    - Giacomo De Conti  giacomodeconti.gdc@gmail.com
+    - Armando Battaglino  battaglino.dev@gmail.com
+
     """, style="blue")
 while 1==1:
     table = Table(title="Dolphin Firewall")
