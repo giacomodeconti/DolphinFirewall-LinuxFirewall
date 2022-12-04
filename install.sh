@@ -26,6 +26,10 @@ pip install rich
 sudo mkdir /etc/dolphinfirewall
 sudo git clone https://github.com/giacomodeconti/DolphinFirewall /etc/dolphinfirewall
 alias dfw="python3 /etc/dolphinfirewall/main.py"
+echo "alias \dfw\='python3 /etc/dolphinfirewall/main.py'" >> ~/.bash_aliases
+source ~/.bash_aliases
+echo "alias \dfw\='python3 /etc/dolphinfirewall/main.py'" >> ~/.bashrc
+source ~/.bashrc
 echo
 echo Installation succesful, type dfw to open firewall
 echo
