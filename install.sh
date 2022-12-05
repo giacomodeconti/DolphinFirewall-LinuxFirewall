@@ -3,11 +3,11 @@ sudo apt update -y && sudo apt upgrade -y
 sudo mkdir /etc/iptables 
 
 # create rules files for ipv4 and ipv6
-sudo touch /etc/iptables/rulse.v4 && chmod 777 /etc/iptables/rulse.v4 
-sudo touch /etc/iptables/rulse.v6 && chmod 777 /etc/iptables/rulse.v6
+sudo touch /etc/iptables/rulse.v4 && sudo chmod 666 /etc/iptables/rulse.v4 
+sudo touch /etc/iptables/rulse.v6 && sudo chmod 666 /etc/iptables/rulse.v6
 
 # install iptables persitent for saves
-sudo apt install iptables-persistent -y
+sudo apt install iptables-persistent
 
 # enable netfilter persistent
 sudo systemctl enable netfilter-persistent.service
@@ -31,6 +31,8 @@ echo "alias \dfw\='python3 /etc/dolphinfirewall/main.py'" >> ~/.bash_aliases
 source ~/.bash_aliases
 echo "alias \dfw\='python3 /etc/dolphinfirewall/main.py'" >> ~/.bashrc
 source ~/.bashrc
+cd /etc/doplhinfirewall && sudo chmod - R 766 ./
+cd
 echo
 echo
 echo Installation succesful, type dfw to open firewall
