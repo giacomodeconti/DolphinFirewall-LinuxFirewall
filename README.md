@@ -21,6 +21,8 @@ Ubuntu
 
 Run install.sh file or run every single command inside of it.
 
+After installation main.pyc to execute the firewall.
+
 ```bash
 # create iptables dir
 sudo apt update -y && sudo apt upgrade -y
