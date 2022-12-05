@@ -3,8 +3,8 @@ sudo apt update -y && sudo apt upgrade -y
 sudo mkdir /etc/iptables 
 
 # create rules files for ipv4 and ipv6
-sudo touch /etc/iptables/rulse.v4 && chmod 700 /etc/iptables/rulse.v4 
-sudo touch /etc/iptables/rulse.v6 && chmod 700 /etc/iptables/rulse.v6
+sudo touch /etc/iptables/rulse.v4 && chmod 777 /etc/iptables/rulse.v4 
+sudo touch /etc/iptables/rulse.v6 && chmod 777 /etc/iptables/rulse.v6
 
 # install iptables persitent for saves
 sudo apt install iptables-persistent -y
