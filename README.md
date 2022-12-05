@@ -9,6 +9,14 @@ Debian
 
 Ubuntu
 
+## Features
+
+- Create policy
+- Delete policy
+- Show all rules
+- Enable/Disable firewall
+
+
 ## Installation
 
 Run install.sh file or run every single command inside of it.
@@ -55,14 +63,6 @@ cd /etc/doplhinfirewall && sudo chmod - R 766 ./
 
 
 
-
-
-## Features
-
-- Create policy
-- Delete policy
-- Show all rules
-- Enable/Disable firewall
 
 
 ## Authors
