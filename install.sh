@@ -1,5 +1,5 @@
 # create iptables dir
-sudo apt update -y
+sudo apt update -y && sudo apt upgrade -y
 sudo mkdir /etc/iptables 
 
 # create rules files for ipv4 and ipv6
