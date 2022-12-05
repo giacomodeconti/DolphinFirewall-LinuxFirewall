@@ -40,7 +40,7 @@ def status():
             os.system("sudo systemctl enable ip6tables")
             time.sleep(2)
             console.print('--!! ENABLED !!--', style="green")
-            with open("status.txt", "w") as f:
+            with open("status.config", "w") as f:
                 f.write("1")
 
         elif respond == '2':
@@ -50,7 +50,7 @@ def status():
             os.system("sudo systemctl disable ip6tables")
             time.sleep(2)
             console.print('--!! DISABLED !!--', style="red")
-            with open("status.txt", "w") as f:
+            with open("status.config", "w") as f:
                 f.write("0")
 
         elif respond == '3':
