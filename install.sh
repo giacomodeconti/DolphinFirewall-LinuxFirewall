@@ -2,12 +2,12 @@
 sudo apt update -y && sudo apt upgrade -y
 sudo mkdir /etc/iptables 
 
+# install iptables persitent for saves
+sudo apt install iptables-persistent
+
 # create rules files for ipv4 and ipv6
 sudo touch /etc/iptables/rulse.v4 && sudo chmod 666 /etc/iptables/rulse.v4 
 sudo touch /etc/iptables/rulse.v6 && sudo chmod 666 /etc/iptables/rulse.v6
-
-# install iptables persitent for saves
-sudo apt install iptables-persistent
 
 # enable netfilter persistent
 sudo systemctl enable netfilter-persistent.service
