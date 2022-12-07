@@ -31,7 +31,7 @@ source ~/.bash_aliases
 echo "alias \dfw\='python3 /etc/dolphinfirewall/dfw/main.py'" >> ~/.bashrc
 source ~/.bashrc
 alias dfw="python3 /etc/dolphinfirewall/dfw/main.py"
-cd /etc/doplhinfirewall && sudo chmod - R 766 ./
+cd /etc/doplphinfirewall && sudo chmod - R 766 ./
 cd
 echo
 echo
