@@ -53,7 +53,7 @@ pip install rich
 
 #download dolphin firewall repo
 sudo mkdir /etc/dolphinfirewall
-sudo git clone https://github.com/giacomodeconti/DolphinFirewall/dfw /etc/dolphinfirewall
+sudo git clone https://github.com/giacomodeconti/DolphinFirewall-LinuxFirewall /etc/dolphinfirewall
 alias dfw="python3 /etc/dolphinfirewall/main.py"
 echo "alias \dfw\='python3 /etc/dolphinfirewall/main.py'" >> ~/.bash_aliases
 source ~/.bash_aliases
