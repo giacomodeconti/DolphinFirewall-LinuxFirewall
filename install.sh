@@ -35,7 +35,9 @@ cd /etc/doplphinfirewall && sudo chmod - R 766 ./
 cd
 echo
 echo
-echo Installation succesful, type dfw to open firewall
+echo Installation succesful, type -> dfw <- to open firewall
 echo
-echo or run python3 /etc/dolphinfirewall/dfw/main.py
+echo ADD ALIAS --> alias dfw="python3 /etc/dolphinfirewall/dfw/main.py"
+echo
+echo or run --> python3 /etc/dolphinfirewall/dfw/main.py
 echo
