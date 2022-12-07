@@ -26,11 +26,11 @@ pip install rich
 #download dolphin firewall repo
 sudo mkdir /etc/dolphinfirewall
 sudo git clone https://github.com/giacomodeconti/DolphinFirewall-LinuxFirewall /etc/dolphinfirewall
-alias dfw="python3 /etc/dolphinfirewall/main.py"
 echo "alias \dfw\='python3 /etc/dolphinfirewall/dfw/main.py'" >> ~/.bash_aliases
 source ~/.bash_aliases
 echo "alias \dfw\='python3 /etc/dolphinfirewall/dfw/main.py'" >> ~/.bashrc
 source ~/.bashrc
+alias dfw="python3 /etc/dolphinfirewall/dfw/main.py"
 cd /etc/doplhinfirewall && sudo chmod - R 766 ./
 cd
 echo
